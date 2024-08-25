@@ -1,16 +1,12 @@
 pipeline {
-    agent { 
-        node {
-            label 'docker-agent-python'
-            }
-      }
+    agent any  // Corrected syntax for agent block
     triggers {
-        pollSCM '* * * * *'
+        pollSCM('* * * * *') // Ensure to format cron expression properly
     }
     stages {
         stage('Build') {
             steps {
-                echo "Building.."
+                echo "Build.."
                 sh '''
                 cd myapp
                 pip install -r requirements.txt
